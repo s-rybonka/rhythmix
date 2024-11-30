@@ -4,6 +4,7 @@ import router from '@/router'
 import axios from 'axios'
 import App from '@/App.vue'
 import './registerServiceWorker'
+import './plugins/bootstrap-vue'
 
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
