@@ -3,30 +3,28 @@ import logging
 import llm as llm_sdk
 from django.conf import settings as dj_settings
 from django.core.cache import cache
-from django.core.exceptions import ValidationError as DjValidationError
+from django.core.exceptions import ValidationError
 from llm.errors import ModelError
 from llm.errors import NeedsKeyException
-from rest_framework.serializers import ValidationError as DRFValidationError
 
 
 logger = logging.getLogger(__name__)
 
 
 class OpenAIAPIService:
-    API_KEY = dj_settings.OPEN_AI_API_KEY
-    DEFAULT_MODEL = dj_settings.OPEN_AI_DEFAULT_MODEL
-    DEFAULT_REST_ERROR_CLASS = DRFValidationError
-    DEFAULT_NATIVE_ERROR_CLASS = DjValidationError
+    API_KEY = dj_settings.OPENAI_API_KEY
+    DEFAULT_MODEL = dj_settings.OPENAI_DEFAULT_MODEL
+    DEFAULT_ERROR_CLASS = ValidationError
     CACHE_TIMEOUT = 3600 * 15
 
     def generate_summary(self, title, author):
         original_text = self.make_prompt(title, author)
         original_text_as_list = original_text.split('.')
-        summary, countries = original_text_as_list
+        summary, countries, *junk = original_text_as_list
         return summary, countries
 
     def make_prompt(self, title, author):
-        song_unique_key = f'{author.lower()}_{title.lower()}'
+        song_unique_key = self.get_cache_unique_key(title, author)
         cached_song_summary = cache.get(song_unique_key)
 
         if cached_song_summary:
@@ -40,7 +38,7 @@ class OpenAIAPIService:
 
         except (ModelError, NeedsKeyException) as e:
             logger.error(e)
-            raise self.DEFAULT_REST_ERROR_CLASS(e)
+            raise self.DEFAULT_ERROR_CLASS(e)
         else:
             response_text = response.text()
             cache.set(song_unique_key, response_text, timeout=self.CACHE_TIMEOUT)
@@ -53,5 +51,12 @@ class OpenAIAPIService:
 
     @staticmethod
     def make_prompt_body(title, author):
-        return (f'Summarize the song {title} by {author} in one sentence. '
-                f'If the song mentions countries, list them in a new sentence separated by commas.')
+        return (f'Summarize {title} by {author} song in one sentence, title and author are not repeated. '
+                f'List mentioned countries as plain comma-separated items in a new sentence. '
+                f'Exclude newline symbol.')
+
+    @staticmethod
+    def get_cache_unique_key(title, author):
+        author_concat = "_".join(author.strip().split(" ")).lower()
+        title_concat = "_".join(title.strip().split(" ")).lower()
+        return f'{author_concat}_{title_concat}'

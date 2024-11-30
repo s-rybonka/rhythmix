@@ -259,8 +259,8 @@ SPECTACULAR_SETTINGS = {
 
 # OpenAI GPT.
 # ------------------------------------------------------------------------------
-OPEN_AI_API_KEY = env.str('OPEN_AI_API_KEY')
-OPEN_AI_DEFAULT_MODEL = env.str('OPEN_AI_DEFAULT_MODEL', 'gpt-4o-mini')
+OPENAI_API_KEY = env.str('OPENAI_API_KEY')
+OPENAI_DEFAULT_MODEL = env.str('OPENAI_DEFAULT_MODEL', 'gpt-4o-mini')
 
 # Django cache.
 # https://docs.djangoproject.com/en/4.2/topics/cache/
