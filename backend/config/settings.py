@@ -256,3 +256,8 @@ SPECTACULAR_SETTINGS = {
         "displayOperationId": True,
     },
 }
+
+# OpenAI GPT.
+# ------------------------------------------------------------------------------
+OPEN_AI_API_KEY = env.str('OPEN_AI_API_KEY')
+OPEN_AI_DEFAULT_MODEL = env.str('OPEN_AI_DEFAULT_MODEL', 'gpt-4o-mini')
