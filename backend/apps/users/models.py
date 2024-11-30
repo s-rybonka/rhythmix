@@ -19,9 +19,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(verbose_name=_('Staff'), default=False)
     registered_at = models.DateTimeField(verbose_name=_('Registered at'), auto_now_add=timezone.now)
     description = models.TextField(verbose_name=_('Description'), max_length=500, blank=True)
+    short_description = models.TextField(verbose_name=_('Short description'), max_length=200, blank=True)
     job_title = models.CharField(verbose_name=_('Job Title'), max_length=100, blank=True)
     skills = models.CharField(verbose_name=_('Skills'), max_length=250, blank=True)
     phone_number = models.CharField(verbose_name=_('Phone number'), max_length=20, blank=True)
+    location = models.CharField(verbose_name=_('Location'), max_length=50, blank=True)
 
 
     # Fields settings
@@ -44,3 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def short_name(self):
         return f'{self.last_name} {self.first_name[0]}.'
+
+    @property
+    def skills_list(self):
+        return self.skills.split(',')

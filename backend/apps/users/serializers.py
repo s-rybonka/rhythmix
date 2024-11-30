@@ -10,6 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     avatar = serializers.SerializerMethodField(read_only=True)
     full_name = serializers.SerializerMethodField(read_only=True)
     short_name = serializers.SerializerMethodField(read_only=True)
+    skills_list = serializers.SerializerMethodField(read_only=True)
     token = serializers.SerializerMethodField(read_only=True)
 
     @staticmethod
@@ -23,6 +24,10 @@ class UserSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_short_name(obj):
         return obj.short_name
+
+    @staticmethod
+    def get_skills_list(obj):
+        return obj.skills_list
 
     @staticmethod
     def get_token(obj):
