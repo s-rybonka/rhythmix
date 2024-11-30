@@ -12,22 +12,29 @@ class UserSerializer(serializers.ModelSerializer):
     short_name = serializers.SerializerMethodField(read_only=True)
     token = serializers.SerializerMethodField(read_only=True)
 
-    def get_avatar(self, obj):
+    @staticmethod
+    def get_avatar(obj):
         return obj.avatar.url if obj.avatar else settings.STATIC_URL + 'images/default_avatar.png'
 
-    def get_full_name(self, obj):
+    @staticmethod
+    def get_full_name(obj):
         return obj.full_name
 
-    def get_short_name(self, obj):
+    @staticmethod
+    def get_short_name(obj):
         return obj.short_name
 
-    def get_token(self, obj):
+    @staticmethod
+    def get_token(obj):
         token, _ = Token.objects.get_or_create(user=obj)
         return token.key
 
     class Meta:
         model = User
-        fields = ['email', 'avatar', 'full_name', 'short_name', 'registered_at', 'token']
+        fields = [
+            'id', 'email', 'avatar', 'full_name', 'short_name', 'registered_at', 'token',
+            'description', 'job_title', 'skills', 'phone_number',
+        ]
 
 
 class LoginSerializer(serializers.Serializer):
