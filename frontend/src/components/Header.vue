@@ -7,9 +7,16 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item to="/">Home</b-nav-item>
-        <b-nav-item to="/about">About</b-nav-item>
-        <b-nav-item to="/songs" v-if="isLoggedIn">Songs</b-nav-item>
+        <b-nav-item to="/" :class="{ active: activeItem === 'home' }" @click="setActive('home')">
+          Home
+        </b-nav-item>
+        <b-nav-item to="/about" :class="{ active: activeItem === 'about' }" @click="setActive('about')">
+          About
+        </b-nav-item>
+        <b-nav-item to="/songs" v-if="isLoggedIn" :class="{ active: activeItem === 'songs' }"
+                    @click="setActive('songs')">
+          Songs
+        </b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
         <b-nav-item-dropdown right>
@@ -32,6 +39,16 @@ import {useAuthStore} from "@/stores/authStore";
 
 export default {
   name: "Header",
+  data() {
+    return {
+      activeItem: "home",
+    };
+  },
+  methods: {
+    setActive(item) {
+      this.activeItem = item;
+    },
+  },
   computed: {
     isLoggedIn() {
       return this.authStore.isLoggedIn;
