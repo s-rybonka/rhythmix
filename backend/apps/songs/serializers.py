@@ -32,4 +32,19 @@ class SongModelSerializer(drf_serializers.ModelSerializer):
                              "Please fix it and try again.")
             })
 
+        self.validate_song_added(title, author, summary)
+
         return super().create(validated_data)
+
+    def validate_song_added(self, title, author, summary):
+        is_song_added = self.Meta.model.objects.filter(
+            title__iexact=title, author__iexact=author,
+            summary__iexact=summary).exists()
+
+        if is_song_added:
+            raise drf_serializers.ValidationError({
+                'message': _(
+                    'The requested song has already been processed with the summary, '
+                    'and the new summarizing request has been postponed for later.'
+                )
+            })
