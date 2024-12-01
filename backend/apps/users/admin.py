@@ -13,7 +13,13 @@ class UserAdmin(BaseUserAdmin):
     list_display = ['full_name', 'email']
     fieldsets = [
         ['Auth', {'fields': ['email', 'password']}],
-        ['Personal info', {'fields': ['last_name', 'first_name', 'avatar']}],
+        ['Personal info', {
+            'fields': [
+                'last_name', 'first_name', 'avatar', 'phone_number', 'description',
+                'short_description', 'job_title', 'skills', 'location'
+            ]
+        }
+         ],
         ['Settings', {'fields': ['groups', 'is_admin', 'is_active', 'is_staff', 'is_superuser']}],
         ['Important dates', {'fields': ['last_login', 'registered_at']}],
     ]

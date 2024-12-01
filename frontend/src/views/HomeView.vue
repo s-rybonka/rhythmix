@@ -47,12 +47,25 @@ export default {
       </b-col>
       <b-col md="6" class="mb-4">
         <b-card class="h-100 shadow-sm border-info">
-          <b-card-header class="bg-info text-white text-center">
+          <b-card-header class="bg-info text-white">
             About the Author
           </b-card-header>
           <b-card-body class="text-center">
             <p>
-              <i class="fas fa-user text-info"></i> Python enthusiast and eager for innovations entrepreneur
+              <i class="fas fa-user text-info"></i>
+              Skilled in building robust server-side applications using Python, Node.js, and SQL/NoSQL databases.
+            </p>
+            <p>
+              <i class="fas fa-code text-info"></i> Experienced in crafting interactive interfaces with Vue.js,
+              React, and modern JavaScript standards.
+            </p>
+            <p>
+              <i class="fas fa-users-cog text-info"></i> Proficient in Agile methodologies and leading teams to
+              deliver high-quality software solutions.
+            </p>
+            <p>
+              <i class="fas fa-server text-info"></i> Expertise in AWS, Docker, Kubernetes, and setting up
+              scalable, fault-tolerant systems.
             </p>
           </b-card-body>
         </b-card>

@@ -236,7 +236,6 @@ REST_FRAMEWORK = {
 # https://github.com/adamchainz/django-cors-headers#configuration
 # ------------------------------------------------------------------------------
 CORS_ORIGIN_ALLOW_ALL = env.bool('CORS_ORIGIN_ALLOW_ALL', default=True)
-CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST', default=[])
 CORS_ALLOW_HEADERS = default_headers + env.tuple('CORS_ALLOW_HEADERS', default=tuple())
 CORS_ALLOW_CREDENTIALS = env.bool('CORS_ALLOW_CREDENTIALS', default=True)
 

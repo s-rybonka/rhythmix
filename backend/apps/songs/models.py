@@ -13,6 +13,7 @@ class Song(dj_models.Model):
     class Meta:
         verbose_name = _('Song')
         verbose_name_plural = _('Songs')
+        ordering = ('-id',)
 
     def __str__(self):
         return self.title

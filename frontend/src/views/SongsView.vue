@@ -80,8 +80,8 @@ export default {
     return {
       fields: [
         {key: "id", label: "ID", sortable: true},
-        {key: "title", label: "Title", sortable: true},
-        {key: "author", label: "Author", sortable: true},
+        {key: "title", label: "Title", sortable: false},
+        {key: "author", label: "Author", sortable: false},
         {key: "summary", label: "Summary", sortable: false},
         {key: "countries", label: "Countries", sortable: false},
       ],
@@ -99,7 +99,10 @@ export default {
       try {
         this.successMessage = null;
         this.errorMessage = null;
-        const response = await axios.post(`${process.env.VUE_APP_BASE_API_URL}/api/songs`, this.form);
+        const response = await axios.post(
+          `${process.env.VUE_APP_BASE_API_URL}/api/songs`, this.form,
+          {headers: this.authStore.getAuthHeader()}
+        );
         this.successMessage = "Data submitted successfully!";
         this.form.title = "";
         this.form.author = "";
@@ -119,10 +122,12 @@ export default {
     },
   },
   mounted() {
-    const store = useAuthStore()
-    axios.get(`${process.env.VUE_APP_BASE_API_URL}/api/songs`, {headers: store.getAuthHeader()})
+    axios.get(`${process.env.VUE_APP_BASE_API_URL}/api/songs`, {headers: this.authStore.getAuthHeader()})
       .then(response => (this.songs.push(...response.data)))
-  }
+  },
+   created() {
+    this.authStore = useAuthStore();
+  },
 };
 </script>
 

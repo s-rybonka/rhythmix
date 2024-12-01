@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from apps.users.models import User
@@ -30,7 +31,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_200_OK, data=serializer.data)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
-    @action(methods=['POST'], detail=False)
+    @action(methods=['POST'], detail=False, permission_classes=[AllowAny])
     def login(self, request):
         serializer = self.get_serializer(request, request.data)
         serializer.is_valid(raise_exception=True)

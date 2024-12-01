@@ -4,10 +4,10 @@
       <b-col md="4" class="mb-4">
         <b-card>
           <b-card-img
-            src="https://via.placeholder.com/150"
+            :src="profile.avatar"
             alt="Profile Picture"
             class="rounded-circle mx-auto d-block"
-            style="width: 150px; height: 150px;"
+            style="width: 160px; height: 160px;"
           ></b-card-img>
           <b-card-body class="text-center">
             <b-card-title>{{ profile.full_name }}</b-card-title>

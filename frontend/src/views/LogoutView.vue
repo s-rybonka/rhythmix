@@ -3,9 +3,9 @@
     <b-card
       class="text-center"
       bg-variant="light"
-      border-variant="warning"
+      border-variant="danger"
       header="Logout Confirmation"
-      header-bg-variant="warning"
+      header-bg-variant="danger"
       header-text-variant="light"
     >
       <b-card-body>
