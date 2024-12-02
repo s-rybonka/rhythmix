@@ -8,6 +8,8 @@ services:
       - 8000
     volumes:
       - ./backend:/app
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
     command: /gunicorn.sh
     entrypoint: /entrypoint.sh
     restart: on-failure
@@ -33,7 +35,7 @@ services:
     volumes:
       - ./backend/media/:/media/
       - ./backend/staticfiles/:/staticfiles/
-#      - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
@@ -42,6 +44,7 @@ services:
   acme-companion:
     image: nginxproxy/acme-companion
     env_file: .env
+    restart: always
     volumes:
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
