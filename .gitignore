@@ -78,3 +78,5 @@ media/
 venv
 .env
 .env.*
+
+certbot/*
