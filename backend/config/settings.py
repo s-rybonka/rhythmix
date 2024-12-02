@@ -11,9 +11,10 @@ from datetime import timedelta
 
 import environ
 from corsheaders.defaults import default_headers
-
+import sys
 
 ROOT_DIR = environ.Path(__file__) - 2
+sys.path.append('apps')
 
 # Load operating system environment variables and then prepare to use them
 env = environ.Env()
