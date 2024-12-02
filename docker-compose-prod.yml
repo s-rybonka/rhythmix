@@ -8,8 +8,6 @@ services:
       - 8000
     volumes:
       - ./backend:/app
-      - certs:/etc/nginx/certs
-      - vhost:/etc/nginx/vhost.d
     command: /gunicorn.sh
     entrypoint: /entrypoint.sh
     restart: on-failure
@@ -21,12 +19,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file: .env
 
-  nginx-proxy:
-    container_name: nginx-proxy
+  nginx:
     build:
       context: .
       dockerfile: nginx/Dockerfile
     ports:
+      - "8000:80"
       - "80:80"
       - "443:443"
     restart: always
@@ -52,7 +50,7 @@ services:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
-      - nginx-proxy
+      - nginx
 
 volumes:
   postgres_data:
