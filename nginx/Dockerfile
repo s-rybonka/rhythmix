@@ -12,7 +12,7 @@ COPY .env /app/.env
 RUN npm run build
 
 # Stage 2 - nginx & frontend dist
-FROM nginx:alpine
+FROM nginxproxy/nginx-proxy:1.5
 
 COPY nginx/prod.conf /etc/nginx/nginx.conf
 COPY --from=build-deps /app/dist/ /dist/

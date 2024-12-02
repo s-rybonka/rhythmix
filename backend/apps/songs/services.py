@@ -57,7 +57,7 @@ class OpenAIAPIService:
     @staticmethod
     def make_prompt_body(title, author):
         return (f'Summarize {title} by {author} song in one sentence, title and author are not repeated. '
-                f'List mentioned countries as plain comma-separated items in a new sentence. '
+                f'List mentioned countries as plain comma-separated items in a new sentence, if they mentioned. '
                 f'Exclude newline symbols. If the provided song and author are not real, raise "ModelError".')
 
     @staticmethod

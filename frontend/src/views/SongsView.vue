@@ -50,14 +50,19 @@
               </b-form-group>
             </b-col>
           </b-row>
-          <b-button type="submit" variant="primary" block>Add Song</b-button>
+          <b-button type="submit" variant="primary" block :disabled="isSubmitting">
+            <span v-if="isSubmitting">
+            <b-spinner small class="mr-2"></b-spinner> Submitting...
+          </span>
+            <span v-else>Add Song</span>
+          </b-button>
         </b-form>
       </b-card-body>
     </b-card>
     <b-card class="shadow-sm border-info">
       <b-card-header class="bg-info text-white">Song List</b-card-header>
       <b-card-body>
-        <b-table bordered hover sticky-header="500px" :items="songs" :fields="fields" show-empty >
+        <b-table bordered hover sticky-header="500px" :items="songs" :fields="fields" show-empty>
           <template #cell(summary)="data">
             <span>{{ data.item.summary || "N/A" }}</span>
           </template>
@@ -92,10 +97,12 @@ export default {
       },
       successMessage: null,
       errorMessage: null,
+      isSubmitting: false,
     };
   },
   methods: {
     async submitForm() {
+      this.isSubmitting = true;
       try {
         this.successMessage = null;
         this.errorMessage = null;
@@ -118,6 +125,8 @@ export default {
 
       } catch (error) {
         this.errorMessage = error.response?.data?.message || "An error occurred while submitting the form.";
+      } finally {
+        this.isSubmitting = false;
       }
     },
   },
@@ -125,7 +134,7 @@ export default {
     axios.get(`${process.env.VUE_APP_BASE_API_URL}/api/songs`, {headers: this.authStore.getAuthHeader()})
       .then(response => (this.songs.push(...response.data)))
   },
-   created() {
+  created() {
     this.authStore = useAuthStore();
   },
 };
