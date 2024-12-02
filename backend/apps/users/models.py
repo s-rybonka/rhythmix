@@ -1,5 +1,3 @@
-from uuid import uuid4
-
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -24,7 +22,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     skills = models.CharField(verbose_name=_('Skills'), max_length=250, blank=True)
     phone_number = models.CharField(verbose_name=_('Phone number'), max_length=20, blank=True)
     location = models.CharField(verbose_name=_('Location'), max_length=50, blank=True)
-
 
     # Fields settings
     EMAIL_FIELD = 'email'

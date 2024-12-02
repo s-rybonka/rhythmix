@@ -12,6 +12,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 # This allows easy placement of apps within the interior serenity directory.
 current_path = os.path.dirname(os.path.abspath(__file__)).replace('/config', '')
@@ -22,5 +23,3 @@ sys.path.append(os.path.join(current_path, 'apps'))
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 application = get_wsgi_application()
-
-

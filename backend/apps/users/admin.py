@@ -16,9 +16,9 @@ class UserAdmin(BaseUserAdmin):
         ['Personal info', {
             'fields': [
                 'last_name', 'first_name', 'avatar', 'phone_number', 'description',
-                'short_description', 'job_title', 'skills', 'location'
-            ]
-        }
+                'short_description', 'job_title', 'skills', 'location',
+            ],
+        },
          ],
         ['Settings', {'fields': ['groups', 'is_admin', 'is_active', 'is_staff', 'is_superuser']}],
         ['Important dates', {'fields': ['last_login', 'registered_at']}],
@@ -26,7 +26,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = [
         [None, {
             'classes': ['wide'],
-            'fields': ['email', 'first_name', 'last_name', 'password1', 'password2']
+            'fields': ['email', 'first_name', 'last_name', 'password1', 'password2'],
         }],
     ]
     search_fields = ['email']

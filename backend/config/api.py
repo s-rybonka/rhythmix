@@ -17,5 +17,5 @@ api_router.register('songs', SongModelViewSet)
 urlpatterns = [
     path('schema/', drf_spec_views.SpectacularAPIView.as_view(), name='schema'),
     path('docs/', drf_spec_views.SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
-    *api_router.urls
+    *api_router.urls,
 ]

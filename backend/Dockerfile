@@ -9,12 +9,11 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DEFAULT_TIMEOUT=100
 
 # python dependencies
-COPY ../backend/requirements/ requirements/
-RUN pip install --upgrade pip
-RUN pip install -r requirements/production.txt --src=/root/pip
+COPY requirements/ requirements/
+RUN pip install -r requirements/production.txt
 
 # upload scripts
-COPY ../backend/scripts/entrypoint.sh ../backend/scripts/gunicorn.sh /
+COPY ./scripts/entrypoint.sh ./scripts/gunicorn.sh /
 
 # Fix windows docker bug, convert CRLF to LF
 RUN sed -i 's/\r$//g' /entrypoint.sh && chmod +x /entrypoint.sh && sed -i 's/\r$//g' /gunicorn.sh && chmod +x /gunicorn.sh

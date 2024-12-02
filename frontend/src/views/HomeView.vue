@@ -16,6 +16,11 @@ export default {
         Our LLM-powered app leverages cutting-edge AI to streamline processes, enhance productivity, and deliver smarter
         solutions tailored to your needs.
       </p>
+      <div>
+        <b-btn-group>
+          <b-link href="/login" class="btn btn-info">Feel free to login</b-link>
+        </b-btn-group>
+      </div>
     </b-jumbotron>
     <b-row>
       <b-col md="6" class="mb-4">
@@ -26,20 +31,20 @@ export default {
           <b-card-body>
             <ul class="list-unstyled">
               <li>
-                <i class="fas fa-lock text-primary"></i> Authentication and authorization
+                <i class="fas fa-lock text-primary"></i> Authentication and authorization;
               </li>
               <li>
-                <i class="fas fa-user-circle text-primary"></i> Profile overview
+                <i class="fas fa-user-circle text-primary"></i> Profile overview;
               </li>
               <li>
-                <i class="fas fa-music text-primary"></i> Analyze the song title and author and provide a quick summary
+                <i class="fas fa-music text-primary"></i> Analyze the song title and author and provide short summary;
               </li>
               <li>
-                <i class="fas fa-globe text-primary"></i> Highlight countries mentioned in the song
+                <i class="fas fa-globe text-primary"></i> Highlight countries mentioned in the song;
               </li>
               <li>
-                <i class="fas fa-database text-primary"></i> Handling repetitive and exact requests by caching responses
-                and optimizing LLM usage
+                <i class="fas fa-database text-primary"></i> Handling repetitive requests, duplicated records, optimize
+                LLM usage;
               </li>
             </ul>
           </b-card-body>
@@ -53,19 +58,19 @@ export default {
           <b-card-body class="text-center">
             <p>
               <i class="fas fa-user text-info"></i>
-              Skilled in building robust server-side applications using Python, Node.js, and SQL/NoSQL databases.
+              Skilled in building robust server-side applications using Python, Django, FastAPI server-side apps;
             </p>
             <p>
               <i class="fas fa-code text-info"></i> Experienced in crafting interactive interfaces with Vue.js,
-              React, and modern JavaScript standards.
+              React, and modern JavaScript standards;
             </p>
             <p>
               <i class="fas fa-users-cog text-info"></i> Proficient in Agile methodologies and leading teams to
-              deliver high-quality software solutions.
+              deliver high-quality software solutions;
             </p>
             <p>
               <i class="fas fa-server text-info"></i> Expertise in AWS, Docker, Kubernetes, and setting up
-              scalable, fault-tolerant systems.
+              scalable, fault-tolerant systems;
             </p>
           </b-card-body>
         </b-card>
