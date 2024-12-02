@@ -17,7 +17,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file: .env
 
-  nginx:
+  nginx-proxy:
     build:
       context: .
       dockerfile: nginx/Dockerfile
@@ -47,7 +47,7 @@ services:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
-      - nginx
+      - nginx-proxy
 
 volumes:
   postgres_data:
