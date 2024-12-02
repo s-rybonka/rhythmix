@@ -1,0 +1,10 @@
+-r ./base.txt
+-r ./linters.txt
+-r ./testing.txt
+-r ./coverage.txt
+
+Werkzeug==3.0.1  # https://github.com/pallets/werkzeug
+
+# Debug
+# ------------------------------------------------------------------------------
+ipdb==0.13.13  # https://github.com/gotcha/ipdb
