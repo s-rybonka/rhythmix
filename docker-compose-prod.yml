@@ -33,7 +33,7 @@ services:
     volumes:
       - ./backend/media/:/media/
       - ./backend/staticfiles/:/staticfiles/
-      - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
+#      - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
       - certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - vhost:/etc/nginx/vhost.d
