@@ -30,32 +30,21 @@ services:
     restart: always
     depends_on:
       - backend
-      - acme-companion
     volumes:
       - ./backend/media/:/media/
       - ./backend/staticfiles/:/staticfiles/
       - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
-      - certs:/etc/nginx/certs
-      - html:/usr/share/nginx/html
-      - vhost:/etc/nginx/vhost.d
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-
-  acme-companion:
-    image: nginxproxy/acme-companion
-    env_file: .env
-    restart: always
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+      - ./certbot/www/:/var/www/certbot/:ro
+  certbot:
+    image: certbot/certbot:latest
+    command: certbot certonly
     volumes:
-      - certs:/etc/nginx/certs
-      - html:/usr/share/nginx/html
-      - vhost:/etc/nginx/vhost.d
-      - acme:/etc/acme.sh
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 
 volumes:
   postgres_data:
     name: rhythmix_db
     driver: local
   certs:
-  html:
-  vhost:
-  acme:
