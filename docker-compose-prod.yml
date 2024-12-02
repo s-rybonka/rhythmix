@@ -30,6 +30,7 @@ services:
     restart: always
     depends_on:
       - backend
+      - acme-companion
     volumes:
       - ./backend/media/:/media/
       - ./backend/staticfiles/:/staticfiles/
@@ -49,8 +50,6 @@ services:
       - vhost:/etc/nginx/vhost.d
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    depends_on:
-      - nginx
 
 volumes:
   postgres_data:
