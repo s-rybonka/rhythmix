@@ -15,7 +15,6 @@ from apps.users.serializers import UserSerializer
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = []
     serializer_classes = {
         'list': UserSerializer,
         'login': LoginSerializer,

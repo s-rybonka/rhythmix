@@ -8,7 +8,7 @@ class TestUserViewSet:
         api_url = reverse('user-profile')
         response = api_client.get(api_url)
 
-        assert response.status_code == status.HTTP_401_UNAUTHORIZED
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
         api_client.force_authenticate(user)
         response = api_client.get(api_url)

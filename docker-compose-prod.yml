@@ -48,4 +48,3 @@ volumes:
   postgres_data:
     name: rhythmix_db
     driver: local
-  certs:
