@@ -6,13 +6,11 @@ class TestUserViewSet:
 
     def test_user_profile_fetch(self, api_client, user):
         api_url = reverse('user-profile')
-
         response = api_client.get(api_url)
 
         assert response.status_code == status.HTTP_401_UNAUTHORIZED
 
         api_client.force_authenticate(user)
-
         response = api_client.get(api_url)
 
         assert response.status_code == status.HTTP_200_OK

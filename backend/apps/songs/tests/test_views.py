@@ -10,13 +10,11 @@ class TestSongModelViewSet:
         factories.SongFactory.create_batch(10)
 
         api_url = reverse('song-list')
-
         response = api_client.get(api_url)
 
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
         api_client.force_authenticate(user)
-
         response = api_client.get(api_url)
 
         assert response.status_code == status.HTTP_200_OK
@@ -26,13 +24,11 @@ class TestSongModelViewSet:
         song = factories.SongFactory()
 
         api_url = reverse('song-detail', args=(song.id,))
-
         response = api_client.get(api_url)
 
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
         api_client.force_authenticate(user)
-
         response = api_client.get(api_url)
 
         assert response.status_code == status.HTTP_200_OK
