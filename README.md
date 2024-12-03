@@ -21,4 +21,4 @@ Create an admin:
 
 Run tests:
 
-`docker compose run backend python pytest`
+`docker compose run backend pytest`
