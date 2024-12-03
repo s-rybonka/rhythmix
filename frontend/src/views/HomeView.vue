@@ -16,11 +16,6 @@ export default {
         Our LLM-powered app leverages cutting-edge AI to streamline processes, enhance productivity, and deliver smarter
         solutions tailored to your needs.
       </p>
-      <div>
-        <b-btn-group>
-          <b-link href="/login" class="btn btn-info">Feel free to login</b-link>
-        </b-btn-group>
-      </div>
     </b-jumbotron>
     <b-row>
       <b-col md="6" class="mb-4">

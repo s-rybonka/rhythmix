@@ -7,8 +7,18 @@ AI-powered app for song processing.
 
 Install [Docker](https://docs.docker.com/install/) and [Docker-Compose](https://docs.docker.com/compose/). Start your virtual machines with the following shell command:
 
-`docker-compose up --build`
+Development:
 
-If all works well, you should be able to create an admin account with:
+`docker compose up --build`
 
-`docker-compose run backend python manage.py createsuperuser`
+Production deploy:
+
+`docker compose -f docker-compose-prod.yml up --build`
+
+Create superuser/admin:
+
+`docker compose run backend python manage.py createsuperuser`
+
+Run tests:
+
+`docker compose run backend python pytest`

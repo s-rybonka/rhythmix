@@ -7,8 +7,9 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-import sys
 import os
+import sys
+
 import environ
 from corsheaders.defaults import default_headers
 
@@ -121,7 +122,6 @@ USE_L10N = True
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
-
 
 # STATIC FILE CONFIGURATION
 # ------------------------------------------------------------------------------
@@ -269,7 +269,7 @@ OPENAI_DEFAULT_MODEL = env.str('OPENAI_DEFAULT_MODEL', 'gpt-4o-mini')
 # https://docs.djangoproject.com/en/4.2/topics/cache/
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'llm-requests',
-    },
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache",
+    }
 }

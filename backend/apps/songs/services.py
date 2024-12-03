@@ -17,7 +17,7 @@ class OpenAIAPIService:
     API_KEY = dj_settings.OPENAI_API_KEY
     DEFAULT_MODEL = dj_settings.OPENAI_DEFAULT_MODEL
     DEFAULT_ERROR_CLASS = songs_exceptions.OpenAIAPIException
-    CACHE_TIMEOUT = 3600 * 15
+    CACHE_TIMEOUT = 60 * 30
 
     def generate_summary(self, title, author):
         original_text = self.make_prompt(title, author)
