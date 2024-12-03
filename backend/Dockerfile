@@ -9,7 +9,7 @@ ENV PYTHONFAULTHANDLER=1 \
     PIP_DEFAULT_TIMEOUT=100
 
 # python dependencies
-COPY requirements/ requirements/
+COPY requirements requirements/
 RUN pip install -r requirements/production.txt
 
 # upload scripts
